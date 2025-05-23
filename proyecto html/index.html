@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExploraMundo - Agencia de Viajes</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="logo.png" alt="ExploraMundo" class="logo">
+        </h1>
+        <nav>
+            <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#paquetes">Paquetes</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="inicio">
+            <h2>Bienvenido a tu próxima aventura</h2>
+                <p>Descubre los mejores destinos con nosotros.</p>
+        </section>
+
+        <section id="paquetes">
+        <h2>Paquetes Destacados</h2>
+
+        <div class="contenedor-paquetes">
+
+        <div class="paquete">
+            <h3>Cartagena Colonial</h3>
+            <img src="cartagena.jpg" alt="Cartagena"    >
+            <p class="descripcion">Un viaje al corazón del Caribe colombiano.</p>
+            <button onclick="verMas(this)">Ver más</button>
+            
+        </div>
+
+        <div class="paquete">
+            <h3>Medellín Moderno</h3>
+            <img src="medellin.jpg" alt="Medellín" >
+            <p class="descripcion">Tecnología y cultura en la ciudad de la eterna primavera.</p>
+            <button onclick="verMas(this)">Ver más</button>
+    
+        </div>
+
+        <div class="paquete">
+            <h3>Amazonas Místico</h3>
+            <img src="amazonas.jpg" alt="Amazonas" >
+            <p class="descripcion">Explora la selva más grande del mundo.</p>
+            <button onclick="verMas(this)">Ver más</button>
+            
+        </div>
+        
+
+        <div class="paquete">
+            <h3>Islas del Rosario</h3>
+            <img src="isla.jpg" alt="Islas del Rosario" >
+            <p class="descripcion">Un paraíso en el Caribe colombiano.</p>
+            <button onclick="verMas(this)">Ver más</button>
+        </div>
+    </div>
+
+        <!-- Cotizador de Viajes -->
+    <section id="cotizador">
+    <h2>Cotiza tu viaje</h2>
+    <form id="form-cotizador">
+        <label for="destino">Destino:</label>
+        <select id="destino" name="destino" required>
+            <option value="">Selecciona un destino</option>
+            <option value="Cartagena">Cartagena</option>
+            <option value="Medellín">Medellín</option>
+            <option value="San Andrés">San Andrés</option>
+        </select>
+        <br>
+        <label for="personas">Número de personas:</label>
+        <input type="number" id="personas" name="personas" min="1" required>
+        <br>
+        <label for="dias">Cantidad de días:</label>
+        <input type="number" id="dias" name="dias" min="1" required>
+        <br>
+        <button type="submit">Calcular costo</button>
+    </form>
+    <div id="resultado-cotizador"></div>
+</section>
+<script>
+const precios = {
+    "Cartagena": 250000,
+    "Medellín": 200000,
+    "San Andrés": 300000
+};
+
+document.getElementById('form-cotizador').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const destino = document.getElementById('destino').value;
+    const personas = parseInt(document.getElementById('personas').value, 10);
+    const dias = parseInt(document.getElementById('dias').value, 10);
+    const resultado = document.getElementById('resultado-cotizador');
+
+    if (precios[destino]) {
+        const total = precios[destino] * personas * dias;
+        resultado.textContent = `Costo total para ${personas} personas por ${dias} días en ${destino}: $${total.toLocaleString('es-CO')}`;
+    } else {
+        resultado.textContent = "Destino no disponible.";
+    }
+});
+</script>
+
+<!--fin del cotizador de viajes -->
+
+    </section>
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <p>Email: contacto@exploramundo.com</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 ExploraMundo</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
